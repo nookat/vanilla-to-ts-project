@@ -1,21 +1,36 @@
+type ID = string | number;
+
+interface Todo {
+  userId: ID;
+  id: ID;
+  title: string;
+  completed: boolean;
+}
+
+interface User {
+  id: ID;
+  name: string;
+}
+
+const todos: Todo[] = [];
+const users: User[] = [];
+
 (function() {
   // Globals
   const todoList = document.getElementById('todo-list');
   const userSelect = document.getElementById('user-todo');
   const form = document.querySelector('form');
-  let todos = [];
-  let users = [];
 
   // Attach Events
   document.addEventListener('DOMContentLoaded', initApp);
   form.addEventListener('submit', handleSubmit);
 
   // Basic Logic
-  function getUserName(userId) {
+  function getUserName(userId: ID) {
     const user = users.find((u) => u.id === userId);
     return user.name;
   }
-  function printTodo({ id, userId, title, completed }) {
+  function printTodo({ id, userId, title, completed }: Todo) {
     const li = document.createElement('li');
     li.className = 'todo-item';
     li.dataset.id = id;
@@ -39,7 +54,7 @@
     todoList.prepend(li);
   }
 
-  function createUserOption(user) {
+  function createUserOption(user: User) {
     const option = document.createElement('option');
     option.value = user.id;
     option.innerText = user.name;
@@ -47,7 +62,7 @@
     userSelect.append(option);
   }
 
-  function removeTodo(todoId) {
+  function removeTodo(todoId: ID) {
     todos = todos.filter((todo) => todo.id !== todoId);
 
     const todo = todoList.querySelector(`[data-id="${todoId}"]`);
@@ -57,7 +72,7 @@
     todo.remove();
   }
 
-  function alertError(error) {
+  function alertError(error: Error) {
     alert(error.message);
   }
 
@@ -118,7 +133,7 @@
     }
   }
 
-  async function createTodo(todo) {
+  async function createTodo(todo: Todo) {
     try {
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/todos',
@@ -139,7 +154,7 @@
     }
   }
 
-  async function toggleTodoComplete(todoId, completed) {
+  async function toggleTodoComplete(todoId: ID, completed) {
     try {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/todos/${todoId}`,
@@ -160,7 +175,7 @@
     }
   }
 
-  async function deleteTodo(todoId) {
+  async function deleteTodo(todoId: ID) {
     try {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/todos/${todoId}`,
