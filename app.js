@@ -113,7 +113,7 @@ var users = [];
     function handleTodoChange() {
         var parent = this.parentElement;
         if (parent) {
-            var todoId = this.parentElement.dataset.id;
+            var todoId = parent.dataset.id;
             var completed = this.checked;
             todoId && toggleTodoComplete(todoId, completed);
         }
@@ -121,7 +121,7 @@ var users = [];
     function handleClose() {
         var parent = this.parentElement;
         if (parent) {
-            var todoId = this.parentElement.dataset.id;
+            var todoId = parent.dataset.id;
             todoId && deleteTodo(todoId);
         }
     }

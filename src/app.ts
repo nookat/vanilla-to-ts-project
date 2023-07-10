@@ -13,7 +13,7 @@ interface User {
 }
 
 let todos: Todo[] = [];
-const users: User[] = [];
+let users: User[] = [];
 
 (function() {
   // Globals
@@ -107,7 +107,7 @@ const users: User[] = [];
     const parent = this.parentElement;
 
     if (parent) {
-      const todoId = this.parentElement.dataset.id;
+      const todoId = parent.dataset.id;
       const completed = this.checked;
 
       todoId && toggleTodoComplete(todoId, completed);
@@ -117,7 +117,7 @@ const users: User[] = [];
     const parent = this.parentElement;
 
     if (parent) {
-      const todoId = this.parentElement.dataset.id;
+      const todoId = parent.dataset.id;
       todoId && deleteTodo(todoId);
     }
   }
