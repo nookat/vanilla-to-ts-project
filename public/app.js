@@ -145,7 +145,7 @@ var users = [];
                         if (error_1 instanceof Error) {
                             alertError(error_1);
                         }
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, []];
                     case 4: return [2 /*return*/];
                 }
             });
@@ -170,7 +170,7 @@ var users = [];
                         if (error_2 instanceof Error) {
                             alertError(error_2);
                         }
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, []];
                     case 4: return [2 /*return*/];
                 }
             });
